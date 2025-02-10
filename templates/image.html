@@ -1,0 +1,61 @@
+<!-- templates/image.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image</title>
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+
+<body>
+    <div class="container-lg mt-5">
+        <div class="row justify-content-start">
+        {% for image_key in images_dir.keys() %}
+        <div class="col-6 col-lg-3">
+            <a href="{{ url_for('detail_image', image_key=image_key) }}" class="text-decoration-none">
+            <div id="carousel-{{ loop.index }}" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true"
+                data-bs-touch="true">
+                <div class="carousel-inner border border-4">
+                    {% for image in images_dir[image_key] %}
+                    {% if loop.index <= 1 %} 
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <img src="{{ url_for('assets', filename=image) }}" class="d-block w-100" alt="{{ image }}"
+                            style="height: 250px; object-fit: cover;" loading="lazy">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="fs-6">{{ image_key }}</h5>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <!-- 轮播图控制按钮 -->
+                <!-- <a class="carousel-control-prev" href="#carousel-{{ loop.index }}" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-{{ loop.index }}" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a> -->
+            </div>
+            </a>
+            <br>
+        </div>
+        {% endfor %}
+        </div>
+        <hr>
+    <footer class="text-center mt-2">
+        <p>Design by sault</p>
+    </footer>
+    </div>
+
+
+
+    <!-- Bootstrap 5 JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+
+</html>

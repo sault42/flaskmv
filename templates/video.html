@@ -1,0 +1,39 @@
+<!-- templates/image.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Video</title>
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+
+<body>
+    <div class="container-lg mt-5">
+        <div class="row justify-content-start">
+        {% for video_key in videos_dir.keys() %}
+        
+        <div class="col-6 col-lg-3 p-3">
+            <a href="{{ url_for('detail_video', video_key=video_key) }}" 
+                class="text-decoration-none btn btn-dark d-flex w-100 justify-content-center align-items-center" 
+                style="height: 200px;">
+                <h5>{{ video_key }}</h5>
+            </a>
+        </div>
+        <br>
+        {% endfor %}
+        </div>
+    </div>
+
+    <hr>
+    <footer class="text-center mt-2">
+        <p>Design by sault</p>
+    </footer>
+
+
+    <!-- Bootstrap 5 JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+
+</html>

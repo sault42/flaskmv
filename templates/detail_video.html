@@ -1,0 +1,31 @@
+<!-- templates/detail_video.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Video</title>
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+
+<body>
+    <div class="container-lg mt-5">
+        {% for video in videos %}
+            <div class="ratio ratio-16x9">
+                <video controls>
+                    <source src="{{ url_for('assets', filename=video) }}" type="video/mp4" loading="lazy">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+        {% endfor %}
+    </div>
+
+    <hr>
+    <footer class="text-center mt-2">
+        <p>Design by sault</p>
+    </footer>
+</body>
+
+</html>

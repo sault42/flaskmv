@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+
+<body>
+
+    <div class="container-lg mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ tv_name }}</h1>  
+            </div>
+            <!-- 视频播放区域 -->
+            <div class="col-12" style="border: 1px solid #ddd; padding: 10px;">
+                <video id="videoPlayer" class="ratio ratio-16x9" controls>
+                    <source src="{{ url_for('assets', filename=tv_src) }}" type="video/mp4">
+                    您的浏览器不支持 video 标签。
+                </video>
+            </div>
+
+            <!-- 选集列表 -->
+            <div class="col-12 mt-3">
+                <h3>选集</h3>
+                <div class="row row-cols-1 row-cols-md-6 row-cols-sm-4 " style="border: 1px solid #ddd; padding: 10px;">
+                    {% for tv in tvs %}
+                    <div class="col m-1">
+                        <a class="btn btn-outline-secondary w-100" href="{{ url_for('detail_tv', tv_name=tv_name, id=tv) }}">
+                            第{{ loop.index }}集
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    </div>
+    </div>
+    <hr>
+    <footer class="text-center mt-2">
+        <p>Design by sault</p>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+
+</html>
